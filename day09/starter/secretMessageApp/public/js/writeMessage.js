@@ -6,7 +6,10 @@ const submitMessage = () => {
     const messageValue = messageInput.value;
 
     // Send to firebase
-    firebase.database().ref().push({
+    if (messageValue.length > 10 || passcodeValue === passcodeValue.toLowerCase()){
+        alert("Error:" + passcodeValue);
+    } else {
+        firebase.database().ref().push({
         message: messageValue,
         passcode: passcodeValue
     });
@@ -14,6 +17,8 @@ const submitMessage = () => {
     // clear value from inputs
     passcodeInput.value = ""; 
     messageInput.value = "";
+    }
+    
 };
 
 // const sendMessageButton = document.querySelector('button');
